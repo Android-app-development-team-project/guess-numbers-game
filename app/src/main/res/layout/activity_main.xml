@@ -1,170 +1,91 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0599BE"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TableRow>
 
-        <EditText
-            android:id="@+id/Edit1"
-            android:layout_weight="5"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-            android:hint="숫자1 입력" />
-    </TableRow>
-
-    <TableRow>
-        <EditText
-            android:id="@+id/Edit2"
-            android:layout_weight="5"
-            android:hint="숫자2 입력" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:background="#FFFFFF"
-            android:id="@+id/BtnNum7"
-            android:layout_gravity="center"
-            android:text="7" />
-
-        <Button
-            android:id="@+id/BtnNum8"
-            android:layout_width="80dp"
-            android:layout_gravity="center"
-            android:background="#FFFFFF"
-            android:text="8" />
-
-        <Button
-            android:id="@+id/BtnNum9"
-            android:layout_gravity="center"
-            android:background="#FFFFFF"
-            android:text="9" />
-
-        <Button
-            android:id="@+id/BtnAdd"
-            android:layout_margin="5dp"
-            android:layout_weight="5"
-            android:background="#FFFFFF"
-            android:text="더하기"
-            android:textSize="20dp" />
-
-
-    </TableRow>
-    <TextView/>
-    <TableRow>
-        <Button
-            android:background="#FFFFFF"
-            android:layout_gravity="center"
-            android:id="@+id/BtnNum4"
-            android:text="4"/>
-        <Button
-            android:background="#FFFFFF"
-            android:layout_gravity="center"
-            android:id="@+id/BtnNum5"
-            android:text="5"/>
-        <Button
-            android:background="#FFFFFF"
-            android:layout_gravity="center"
-            android:id="@+id/BtnNum6"
-            android:text="6"/>
-
-        <Button
-            android:id="@+id/BtnSub"
-            android:layout_margin="5dp"
-            android:layout_weight="5"
-            android:background="#FFFFFF"
-            android:text="빼기"
-            android:textSize="20dp" />
-
-    </TableRow>
-    <TextView/>
-    <TableRow>
-        <Button
-            android:background="#FFFFFF"
-            android:layout_gravity="center"
-            android:id="@+id/BtnNum1"
-            android:text="1"/>
-        <Button
-            android:background="#FFFFFF"
-            android:layout_gravity="center"
-            android:id="@+id/BtnNum2"
-            android:text="2"/>
-        <Button
-            android:background="#FFFFFF"
-            android:layout_gravity="center"
-            android:id="@+id/BtnNum3"
-            android:text="3"/>
-
-        <TableRow>
-
-            <Button
-                android:id="@+id/BtnMul"
-                android:layout_margin="5dp"
-                android:layout_weight="5"
-                android:background="#FFFFFF"
-                android:text="x"
-                android:textSize="20dp" />
-        </TableRow>
-
-    </TableRow>
-    <TextView/>
-    <LinearLayout>
-
-        <Button
-            android:layout_weight="5"
-            android:id="@+id/BtnNum0"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:layout_margin="5dp"
-            android:text="0" />
+            android:layout_marginTop="80sp"
+            android:textStyle="italic"
+            android:textFontWeight="1000"
+            android:text="같은 숫자 찾기 게임!"
+            android:textSize="30sp" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/countDown"
+            android:layout_marginTop="80sp"
+            android:layout_marginLeft="100sp"
+            android:textSize="30sp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:text="Button" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:text="Button" />
+            android:text="5" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <TableRow>
+        <FrameLayout
+            android:id="@+id/buttonClick"
+            android:layout_width="300sp"
+            android:layout_height="400sp"
+            android:layout_marginTop="100sp">
 
-    </TableRow>
-    <TableRow>
+        </FrameLayout>
 
-    </TableRow>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30sp">
 
-    <TableRow>
-        <Button
-            android:background="#FFFFFF"
-            android:layout_weight="5"
-            android:id="@+id/BtnDiv"
-            android:layout_margin="5dp"
-            android:textSize="20dp"
-            android:text="나누기"/>
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:id="@+id/TextResult"
-            android:layout_margin="5dp"
-            android:layout_span="5"
-            android:text="계산 결과 : "
-            android:textColor="#FF0000"
-            android:textSize="35dp"/>
-    </TableRow>
+            <TextView
+                android:id="@+id/result"
+                android:layout_marginTop="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
 
-</TableLayout>
+            <TextView
+                android:id="@+id/life"
+                android:layout_marginTop="50sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="목숨 " />
+
+            <TextView
+                android:id="@+id/first"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="첫 번째 입력된 값" />
+
+            <TextView
+                android:id="@+id/second"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="두 번째 입력 값" />
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_marginTop="180sp"
+                android:layout_width="70sp"
+                android:layout_height="wrap_content"
+                android:text="제출" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
