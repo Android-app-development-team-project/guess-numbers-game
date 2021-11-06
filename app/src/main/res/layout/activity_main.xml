@@ -37,13 +37,148 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <FrameLayout
-            android:id="@+id/buttonClick"
-            android:layout_width="300sp"
-            android:layout_height="400sp"
-            android:layout_marginTop="100sp">
+        <LinearLayout
+            android:layout_width="280sp"
+            android:layout_height="300sp"
+            android:layout_marginTop="100sp"
+            android:orientation="vertical">
 
-        </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/num1"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="1" />
+
+                <Button
+                    android:id="@+id/num2"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="2" />
+
+                <Button
+                    android:id="@+id/num3"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="3" />
+
+                <Button
+                    android:id="@+id/num4"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/num9"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="9" />
+
+                <Button
+                    android:id="@+id/num10"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="10" />
+
+                <Button
+                    android:id="@+id/num11"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="11" />
+
+                <Button
+                    android:id="@+id/num12"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="12" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/num5"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="5" />
+
+                <Button
+                    android:id="@+id/num6"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="6" />
+
+                <Button
+                    android:id="@+id/num7"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="7" />
+
+                <Button
+                    android:id="@+id/num8"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="8" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/plus"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="+" />
+
+                <Button
+                    android:id="@+id/minus"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="-" />
+
+                <Button
+                    android:id="@+id/multiply"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="*" />
+
+                <Button
+                    android:id="@+id/division"
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_marginRight="5sp"
+                    android:text="/" />
+            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,23 +198,30 @@
                 android:layout_marginTop="50sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="60sp"
                 android:text="목숨 " />
 
             <TextView
                 android:id="@+id/first"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30sp"
+                android:layout_marginLeft="30sp"
                 android:text="첫 번째 입력된 값" />
 
             <TextView
                 android:id="@+id/second"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30sp"
+                android:layout_marginLeft="30sp"
                 android:text="두 번째 입력 값" />
+
 
             <Button
                 android:id="@+id/submit"
-                android:layout_marginTop="180sp"
+                android:layout_marginTop="70sp"
+                android:layout_marginLeft="60sp"
                 android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:text="제출" />
