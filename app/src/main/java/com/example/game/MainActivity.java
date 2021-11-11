@@ -1,5 +1,7 @@
 package com.example.game;
 
+import static java.util.Collections.shuffle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -12,12 +14,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Collections;
+
 public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     ButtonClick buttonClick;
     Button btnAdd, btnSub, btnMul, btnDiv; // +, -, *, / 버튼
     Button submit;
     Integer[] numBtn = {R.id.num1,R.id.num2,R.id.num3,R.id.num4,R.id.num5,R.id.num6,R.id.num7,R.id.num8,R.id.num9,R.id.num10, R.id.num11, R.id.num12}; // 숫자 버튼
+    String[] buttonArray = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "+", "-", "/", "*"};
+//    int[] buttonArray = new int[12];
     Button[] numButtons = new Button[12];
     String num1;
     String num2; // 클릭되어진 숫자.
@@ -27,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     TextView important;
     EditText edit1, edit2;
     String  res1Input, res2Input; // 실제 결과값이 들어갈 부분.
+    int randomBtn[] = new int[12]; // 버튼 랜덤으로 들어갈 공간.
     int watchResult;
     int i, j;
     @Override
@@ -41,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
         btnMul = (Button)findViewById(R.id.multiply);
         btnDiv = (Button)findViewById(R.id.division);
         resultText = (TextView)findViewById(R.id.result);
+
+        // 버튼 랜덤으로 섞기
+        for(int i = 0; i < buttonArray.length; i++){
+            double random = Math.random() * 5;
+        }
+
+
+
         // 숫자 버튼들을 지정, 숫자 버튼들을 눌렀을 때 resNum1, resNum2에 누른 버튼 값으로 변경시켜주기.
         // 손보기..
         for (i = 0; i <numBtn.length; i++) {
@@ -118,10 +133,6 @@ public class MainActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // String 으로 지정.
-//                res1Input = resNum[0].getText().toString();
-//                res2Input = resNum[1].getText().toString();
-//                watchResult = Integer.parseInt(res1Input) * Integer.parseInt(res2Input);
                 String resultInt = resultText.getText().toString();
                 String importantInt = important.getText().toString();
                 if(Integer.parseInt(resultInt) == Integer.parseInt(importantInt)){
