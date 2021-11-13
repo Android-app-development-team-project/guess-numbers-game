@@ -2,6 +2,7 @@ package com.example.game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ public class InGame extends AppCompatActivity {
     int i, j;
     // 타이머 변수
     TextView timer; // 타이머 textView
+    TextView timer2;
     int value; // 타이머 숫자 표시
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,27 +167,40 @@ public class InGame extends AppCompatActivity {
                         public void run() {
                             timer.setText(String.valueOf(value));
                             // 5초가 지나면 버튼 입력하는 배경 색 숫자가 안 보이도록 변경시켜주기.
+                            // 처음 카운트다운이 0이 되면
                             if(value == 0){
-                                Toast.makeText(getApplicationContext(), "!", Toast.LENGTH_SHORT).show();
-                                new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        for(j = 10; j > 0; j--){
-                                            try {
-                                                Thread.sleep(1000);
-                                            } catch (InterruptedException e) {
-                                                e.printStackTrace();
-                                                value = j;
-                                                InGame.this.runOnUiThread(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        timer.setText(String.valueOf(value));
-                                                    }
-                                                });
-                                            }
-                                        }
-                                    }
-                                }).start();
+                                // 배경색을 변경시켜서 숫자를 안보이게 해준 다음에
+                                for(j = 0; j < buttonList.size(); j++){
+                                    btnList[j].setBackgroundColor(Color.parseColor("#8A8988"));
+                                }
+                                // 다시 10초 카운트 다운을 한다.
+                                CountDown();
+                            }
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
+    public void CountDown(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 5초 카운트 다운
+                for(i = 5; i >= 0; i--){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    value = i;
+                    InGame.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            timer.setText(String.valueOf(value));
+                            // 5초가 지나면 버튼 입력하는 배경 색 숫자가 안 보이도록 변경시켜주기.
+                            if(value == 0){
+                                Toast.makeText(getApplicationContext(), "시간이 초과되었습니다..", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
