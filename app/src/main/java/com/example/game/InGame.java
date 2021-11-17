@@ -14,8 +14,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class InGame extends AppCompatActivity {
-
     List<String> buttonList = new ArrayList<>();
+    //    List<String> resultText = new ArrayList<>();
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11, btn12, btn13, btn14, btn15, btn16;
     Button[] btnList = {btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11, btn12, btn13, btn14, btn15, btn16};
     Button submit; // 결과 버튼
@@ -25,10 +25,9 @@ public class InGame extends AppCompatActivity {
     TextView important;
     String res1Input, res2Input; // 실제 결과값이 들어갈 부분
     int watchResult;
-    int i, j;
+    int i, j, a;
     // 타이머 변수
     TextView timer; // 타이머 textView
-    TextView timer2;
     int value; // 타이머 숫자 표시
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,110 +42,16 @@ public class InGame extends AppCompatActivity {
         btnList[12] = (Button) findViewById(R.id.btn13); btnList[13] = (Button) findViewById(R.id.btn14); btnList[14] = (Button) findViewById(R.id.btn15); btnList[15] = (Button) findViewById(R.id.btn16);
 
         Collections.shuffle(buttonList);
-
+        resText1 = (TextView) findViewById(R.id.first);
+        resText2 = (TextView)findViewById(R.id.second);
+        TextView[] resultArray = {resText1, resText2};
         for(i = 0; i < buttonList.size(); i++){
             // 코드 개선하기..
             btnList[0].setText(buttonList.get(0)); btnList[1].setText(buttonList.get(1)); btnList[2].setText(buttonList.get(2)); btnList[3].setText(buttonList.get(3)); btnList[4].setText(buttonList.get(4));
             btnList[5].setText(buttonList.get(5)); btnList[6].setText(buttonList.get(6)); btnList[7].setText(buttonList.get(7)); btnList[8].setText(buttonList.get(8)); btnList[9].setText(buttonList.get(9));
             btnList[10].setText(buttonList.get(10)); btnList[11].setText(buttonList.get(11)); btnList[12].setText(buttonList.get(12)); btnList[13].setText(buttonList.get(13)); btnList[14].setText(buttonList.get(14)); btnList[15].setText(buttonList.get(15));
             // 왜 != 가 안되는지..?
-            if(buttonList.get(i) == "1" || buttonList.get(i) == "2" || buttonList.get(i) == "3" || buttonList.get(i) == "4" || buttonList.get(i) == "5" || buttonList.get(i) == "6" || buttonList.get(i) == "7" || buttonList.get(i) == "8" || buttonList.get(i) == "9" || buttonList.get(i) == "10" || buttonList.get(i) == "11" || buttonList.get(i) == "12"){
-                for(j = 0; j < btnList.length; j++){
-                    final int index; // 이거 안해주면 오류생김..
-                    index = j;
-                    resText1 = (TextView) findViewById(R.id.first);
-                    resText2 = (TextView)findViewById(R.id.second);
-                    btnList[index].setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-//                            for(z = 0; z < res.length; z++){
-//                                resText[z] = (TextView) findViewById(res[z]);
-//                                resText[0]
-//                            }
-                            resText1.setText(btnList[index].getText().toString());
-                            resText2.setText(btnList[index].getText().toString());
-                        }
-                    });
-                }
-            }
         }
-        // 만약 버튼의.getText()가 + 일때 그 버튼을 클릭 시 임시 결과 값을 더해줌.
-        for(i = 0; i < buttonList.size(); i++){
-            resultText = (TextView)findViewById(R.id.result);
-            if(buttonList.get(i) == "+"){
-                btnList[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        res1Input = resText1.getText().toString();
-                        res2Input = resText2.getText().toString();
-                        watchResult = Integer.parseInt(res1Input) + Integer.parseInt(res2Input);
-                        resultText.setText(String.valueOf(watchResult));
-                    }
-                });
-            }
-        }
-        // 만약 버튼의.getText()가 - 일때 그 버튼을 클릭 시 임시 결과 값을 빼줌.
-        for(i = 0; i < buttonList.size(); i++){
-            if(buttonList.get(i) == "-"){
-                btnList[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        res1Input = resText1.getText().toString();
-                        res2Input = resText2.getText().toString();
-                        watchResult = Integer.parseInt(res1Input) - Integer.parseInt(res2Input);
-                        resultText.setText(String.valueOf(watchResult));
-                    }
-                });
-            }
-        }
-        // 만약 버튼의.getText()가 - 일때 그 버튼을 클릭 시 임시 결과 값을 빼줌.
-        for(i = 0; i < buttonList.size(); i++){
-            if(buttonList.get(i) == "*"){
-                btnList[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        res1Input = resText1.getText().toString();
-                        res2Input = resText2.getText().toString();
-                        watchResult = Integer.parseInt(res1Input) * Integer.parseInt(res2Input);
-                        resultText.setText(String.valueOf(watchResult));
-                    }
-                });
-            }
-        }
-        // 만약 버튼의.getText()가 / 일때 그 버튼을 클릭 시 임시 결과 값을 빼줌.
-        for(i = 0; i < buttonList.size(); i++){
-            if(buttonList.get(i) == "/"){
-                btnList[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        res1Input = resText1.getText().toString();
-                        res2Input = resText2.getText().toString();
-                        watchResult = Integer.parseInt(res1Input) / Integer.parseInt(res2Input);
-                        resultText.setText(String.valueOf(watchResult));
-                    }
-                });
-            }
-        }
-        // 랜덤 값 가져와서 result에 지정하기.
-        int random = (int) (Math.random() * 20) + 1; // 1 ~ 20까지의 랜덤 값 지정.
-        important = (TextView)findViewById(R.id.important);
-        important.setText(String.valueOf(random));
-
-        submit = (Button) findViewById(R.id.submit);
-        // 제출을 클릭했을 때 문제랑 결과같 같으면 true, 다르면 false 출력 (임시로 Toast 출력)
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String resultInt = resultText.getText().toString();
-                String importantInt = important.getText().toString();
-                if(Integer.parseInt(resultInt) == Integer.parseInt(importantInt)){
-                    Toast.makeText(getApplicationContext(), "성공입니다!", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "실패입니다..", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
         // 타이머
         timer = (TextView) findViewById(R.id.timer);
@@ -173,6 +78,105 @@ public class InGame extends AppCompatActivity {
                                 for(j = 0; j < buttonList.size(); j++){
                                     btnList[j].setBackgroundColor(Color.parseColor("#8A8988"));
                                 }
+                                for(i = 0; i < buttonList.size(); i++){
+                                    // 코드 개선하기..
+                                    btnList[0].setText(buttonList.get(0)); btnList[1].setText(buttonList.get(1)); btnList[2].setText(buttonList.get(2)); btnList[3].setText(buttonList.get(3)); btnList[4].setText(buttonList.get(4));
+                                    btnList[5].setText(buttonList.get(5)); btnList[6].setText(buttonList.get(6)); btnList[7].setText(buttonList.get(7)); btnList[8].setText(buttonList.get(8)); btnList[9].setText(buttonList.get(9));
+                                    btnList[10].setText(buttonList.get(10)); btnList[11].setText(buttonList.get(11)); btnList[12].setText(buttonList.get(12)); btnList[13].setText(buttonList.get(13)); btnList[14].setText(buttonList.get(14)); btnList[15].setText(buttonList.get(15));
+                                    // 왜 != 가 안되는지..?
+                                    if(buttonList.get(i) == "1" || buttonList.get(i) == "2" || buttonList.get(i) == "3" || buttonList.get(i) == "4" || buttonList.get(i) == "5" || buttonList.get(i) == "6" || buttonList.get(i) == "7" || buttonList.get(i) == "8" || buttonList.get(i) == "9" || buttonList.get(i) == "10" || buttonList.get(i) == "11" || buttonList.get(i) == "12"){
+                                        final int indexNum; // 이거 안해주면 오류생김..
+                                        indexNum = i;
+                                        btnList[indexNum].setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                resultArray[a].setText(btnList[indexNum].getText().toString());
+                                                a++;
+                                                if (a>=3){
+                                                    a = 1;
+                                                    Toast.makeText(getApplicationContext(), "이제 연산자를 찾아서 입력해주세요!", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                                // 만약 버튼의.getText()가 + 일때 그 버튼을 클릭 시 임시 결과 값을 더해줌.
+                                for(i = 0; i < buttonList.size(); i++){
+                                    resultText = (TextView)findViewById(R.id.result);
+                                    if(buttonList.get(i) == "+"){
+                                        btnList[i].setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                res1Input = resText1.getText().toString();
+                                                res2Input = resText2.getText().toString();
+                                                watchResult = Integer.parseInt(res1Input) + Integer.parseInt(res2Input);
+                                                resultText.setText(String.valueOf(watchResult));
+                                            }
+                                        });
+                                    }
+                                }
+                                // 만약 버튼의.getText()가 - 일때 그 버튼을 클릭 시 임시 결과 값을 빼줌.
+                                for(i = 0; i < buttonList.size(); i++){
+                                    if(buttonList.get(i) == "-"){
+                                        btnList[i].setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                res1Input = resText1.getText().toString();
+                                                res2Input = resText2.getText().toString();
+                                                watchResult = Integer.parseInt(res1Input) - Integer.parseInt(res2Input);
+                                                resultText.setText(String.valueOf(watchResult));
+                                            }
+                                        });
+                                    }
+                                }
+                                // 만약 버튼의.getText()가 - 일때 그 버튼을 클릭 시 임시 결과 값을 빼줌.
+                                for(i = 0; i < buttonList.size(); i++){
+                                    if(buttonList.get(i) == "*"){
+                                        btnList[i].setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                res1Input = resText1.getText().toString();
+                                                res2Input = resText2.getText().toString();
+                                                watchResult = Integer.parseInt(res1Input) * Integer.parseInt(res2Input);
+                                                resultText.setText(String.valueOf(watchResult));
+                                            }
+                                        });
+                                    }
+                                }
+                                // 만약 버튼의.getText()가 / 일때 그 버튼을 클릭 시 임시 결과 값을 빼줌.
+                                for(i = 0; i < buttonList.size(); i++){
+                                    if(buttonList.get(i) == "/"){
+                                        btnList[i].setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                res1Input = resText1.getText().toString();
+                                                res2Input = resText2.getText().toString();
+                                                watchResult = Integer.parseInt(res1Input) / Integer.parseInt(res2Input);
+                                                resultText.setText(String.valueOf(watchResult));
+                                            }
+                                        });
+                                    }
+                                }
+                                // 랜덤 값 가져와서 result에 지정하기.
+                                int random = (int) (Math.random() * 20) + 1; // 1 ~ 20까지의 랜덤 값 지정.
+                                important = (TextView)findViewById(R.id.important);
+                                important.setText(String.valueOf(random));
+
+                                submit = (Button) findViewById(R.id.submit);
+                                // 제출을 클릭했을 때 문제랑 결과같 같으면 true, 다르면 false 출력 (임시로 Toast 출력)
+                                submit.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        String resultInt = resultText.getText().toString();
+                                        String importantInt = important.getText().toString();
+                                        if(Integer.parseInt(resultInt) == Integer.parseInt(importantInt)){
+                                            Toast.makeText(getApplicationContext(), "성공입니다!", Toast.LENGTH_SHORT).show();
+                                        }
+                                        else{
+                                            Toast.makeText(getApplicationContext(), "실패입니다..", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                                 // 다시 10초 카운트 다운을 한다.
                                 CountDown();
                             }
