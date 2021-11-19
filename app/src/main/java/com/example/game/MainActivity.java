@@ -18,39 +18,27 @@ import android.widget.Toast;
 import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
-    TextView timer; // 타이머 textView
-    int value; // 타이머 숫자 표시
-    int i;
+    Button easyButton, hardButton;
+    Intent easyIntent, hardIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // 타이머
-        timer = (TextView) findViewById(R.id.countDown);
-        value = 0;
-        new Thread(new Runnable() {
+        easyIntent = new Intent(this, InGame.class);
+        easyButton = (Button)findViewById(R.id.easyLevel);
+        hardButton = (Button)findViewById(R.id.hardLevel);
+        easyButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                // 5초 카운트 다운
-                for(i = 5; i >= 0; i--){
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    value = i;
-                    MainActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            timer.setText(String.valueOf(value));
-                            if(value == 0){
-                                Intent intent = new Intent(MainActivity.this, InGame.class);
-                                startActivity(intent);
-                            }
-                        }
-                    });
-                }
+            public void onClick(View view) {
+                // easy모드로 이동.
+                startActivity(easyIntent);
             }
-        }).start();
+        });
+        hardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // hard 모드 intent 넣기.
+            }
+        });
     }
 }

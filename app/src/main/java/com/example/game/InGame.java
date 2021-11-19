@@ -92,9 +92,8 @@ public class InGame extends AppCompatActivity {
                                             public void onClick(View view) {
                                                 resultArray[a].setText(btnList[indexNum].getText().toString());
                                                 a++;
-                                                if (a>=3){
-                                                    a = 1;
-                                                    Toast.makeText(getApplicationContext(), "이제 연산자를 찾아서 입력해주세요!", Toast.LENGTH_SHORT).show();
+                                                if (a==2){
+                                                    a = 0;
                                                 }
                                             }
                                         });
