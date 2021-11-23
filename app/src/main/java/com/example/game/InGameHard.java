@@ -192,7 +192,7 @@ public class InGameHard extends AppCompatActivity {
             @Override
             public void run() {
                 // 5초 카운트 다운
-                for(i = 5; i >= 0; i--){
+                for(i = 10; i >= 0; i--){
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
