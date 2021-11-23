@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Game">
         <activity
-            android:name=".InGame"
+            android:name=".InGameHard"
+            android:exported="true" />
+        <activity
+            android:name=".InGameEasy"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

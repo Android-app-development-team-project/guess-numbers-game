@@ -13,9 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class InGame extends AppCompatActivity {
+public class InGameHard extends AppCompatActivity {
     List<String> buttonList = new ArrayList<>();
-    //    List<String> resultText = new ArrayList<>();
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11, btn12, btn13, btn14, btn15, btn16;
     Button[] btnList = {btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11, btn12, btn13, btn14, btn15, btn16};
     Button submit; // 결과 버튼
@@ -67,7 +66,7 @@ public class InGame extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     value = i;
-                    InGame.this.runOnUiThread(new Runnable() {
+                    InGameHard.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             timer.setText(String.valueOf(value));
@@ -200,7 +199,7 @@ public class InGame extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     value = i;
-                    InGame.this.runOnUiThread(new Runnable() {
+                    InGameHard.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             timer.setText(String.valueOf(value));

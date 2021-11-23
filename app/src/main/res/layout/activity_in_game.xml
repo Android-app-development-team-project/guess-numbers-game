@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FAEEE0"
-    tools:context=".InGame">
+    tools:context=".InGameEasy">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,10 +15,10 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="match_parent"
+            android:text="같은 숫자 찾기 게임!"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="80sp"
-            android:text="같은 숫자 찾기 게임!"
             android:textColor="#A1A09E"
             android:textFontWeight="1000"
             android:textSize="30sp"
