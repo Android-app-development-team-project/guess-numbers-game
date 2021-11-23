@@ -4,8 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/border.xml" value="0.18697916666666667" />
-        <entry key="app/src/main/res/layout/activity_in_game.xml" value="0.3755274261603376" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2765957446808511" />
+        <entry key="app/src/main/res/layout/activity_in_game.xml" value="0.31049884589137217" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1654984976513898" />
         <entry key="app/src/main/res/layout/fragment_button_click.xml" value="0.23645833333333333" />
       </map>
     </option>

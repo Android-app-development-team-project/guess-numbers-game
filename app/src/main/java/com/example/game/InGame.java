@@ -169,6 +169,9 @@ public class InGame extends AppCompatActivity {
                                         String resultInt = resultText.getText().toString();
                                         String importantInt = important.getText().toString();
                                         if(Integer.parseInt(resultInt) == Integer.parseInt(importantInt)){
+                                            // 제출 버튼을 눌렀을 때
+                                            resultText.setTextColor(Color.parseColor("#9E195EE8"));
+                                            important.setTextColor(Color.parseColor("#9E195EE8"));
                                             Toast.makeText(getApplicationContext(), "성공입니다!", Toast.LENGTH_SHORT).show();
                                         }
                                         else{
