@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class InGameHard extends AppCompatActivity {
     TextView important;
     String res1Input, res2Input; // 실제 결과값이 들어갈 부분
     int watchResult;
+    int score;
     int i, j, a;
     // 타이머 변수
     TextView timer; // 타이머 textView
@@ -156,12 +158,13 @@ public class InGameHard extends AppCompatActivity {
                                     }
                                 }
                                 // 랜덤 값 가져와서 result에 지정하기.
-                                int random = (int) (Math.random() * 20) + 1; // 1 ~ 20까지의 랜덤 값 지정.
+                                int random = (int) (Math.random() * 50) + 1; // 1 ~ 20까지의 랜덤 값 지정.
                                 important = (TextView)findViewById(R.id.important);
                                 important.setText(String.valueOf(random));
 
                                 submit = (Button) findViewById(R.id.submit);
                                 // 제출을 클릭했을 때 문제랑 결과같 같으면 true, 다르면 false 출력 (임시로 Toast 출력)
+                                // easy모드는 성공하면 +5씩 증가 실패하면 다시 0으로 초기화
                                 submit.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
@@ -172,9 +175,13 @@ public class InGameHard extends AppCompatActivity {
                                             resultText.setTextColor(Color.parseColor("#9E195EE8"));
                                             important.setTextColor(Color.parseColor("#9E195EE8"));
                                             Toast.makeText(getApplicationContext(), "성공입니다!", Toast.LENGTH_SHORT).show();
+                                            score += 5;
+                                            Log.i("SCORE", "게임 성공! 현재 스코어는 : " + score + "입니다.");
                                         }
                                         else{
                                             Toast.makeText(getApplicationContext(), "실패입니다..", Toast.LENGTH_SHORT).show();
+                                            score = 0;
+                                            Log.i("SCORE", "게임 실패! 현재 스코어는 : " + score + "입니다.");
                                         }
                                     }
                                 });
