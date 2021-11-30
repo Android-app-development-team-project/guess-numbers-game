@@ -1,7 +1,10 @@
-package com.example.game;
+package com.example.a_test_in_my_head;
+
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class InGameHard extends AppCompatActivity {
+public class GuessNumberInGameHard extends AppCompatActivity {
     List<String> buttonList = new ArrayList<>();
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11, btn12, btn13, btn14, btn15, btn16;
     Button[] btnList = {btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11, btn12, btn13, btn14, btn15, btn16};
@@ -25,15 +28,36 @@ public class InGameHard extends AppCompatActivity {
     TextView important;
     String res1Input, res2Input; // 실제 결과값이 들어갈 부분
     int watchResult;
-    int score;
     int i, j, a;
     // 타이머 변수
     TextView timer; // 타이머 textView
     int value; // 타이머 숫자 표시
+    Intent intent1;
+    Intent intent2;
+    boolean flag = true;
+    private long backKeyPressedTime = 0;
+    boolean answer;
+
+    GuessNumberInGame hardScore;
+
+    @Override
+    public void onBackPressed() {
+        if(System.currentTimeMillis()>backKeyPressedTime+2000){
+            backKeyPressedTime=System.currentTimeMillis();
+            Toast.makeText(this,"뒤로가기 버튼을 한번 더 누르시면 종료됩니다!",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(System.currentTimeMillis()<=backKeyPressedTime+2000){
+            finishAffinity();
+            System.runFinalization();
+            System.exit(0);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_in_game);
+        setContentView(R.layout.activity_guess_number_in_game_hard);
         // 각 버튼마다 랜덤으로 출력되도록 하기 (안겹치게)    코드 개선하기..
         buttonList.add("1"); buttonList.add("2"); buttonList.add("3"); buttonList.add("4"); buttonList.add("5"); buttonList.add("6"); buttonList.add("7"); buttonList.add("8");
         buttonList.add("9"); buttonList.add("10"); buttonList.add("11"); buttonList.add("12"); buttonList.add("+"); buttonList.add("-"); buttonList.add("/"); buttonList.add("*");
@@ -53,6 +77,10 @@ public class InGameHard extends AppCompatActivity {
             btnList[10].setText(buttonList.get(10)); btnList[11].setText(buttonList.get(11)); btnList[12].setText(buttonList.get(12)); btnList[13].setText(buttonList.get(13)); btnList[14].setText(buttonList.get(14)); btnList[15].setText(buttonList.get(15));
             // 왜 != 가 안되는지..?
         }
+        // 랜덤 값 가져와서 result에 지정하기.
+        int random = (int) (Math.random() * 20) + 1; // 1 ~ 20까지의 랜덤 값 지정.
+        important = (TextView)findViewById(R.id.important);
+        important.setText(String.valueOf(random));
 
         // 타이머
         timer = (TextView) findViewById(R.id.timer);
@@ -61,14 +89,14 @@ public class InGameHard extends AppCompatActivity {
             @Override
             public void run() {
                 // 5초 카운트 다운
-                for(i = 5; i >= 0; i--){
+                for(i = 3; i >= 0; i--){
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     value = i;
-                    InGameHard.this.runOnUiThread(new Runnable() {
+                    GuessNumberInGameHard.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             timer.setText(String.valueOf(value));
@@ -157,32 +185,33 @@ public class InGameHard extends AppCompatActivity {
                                         });
                                     }
                                 }
-                                // 랜덤 값 가져와서 result에 지정하기.
-                                int random = (int) (Math.random() * 50) + 1; // 1 ~ 20까지의 랜덤 값 지정.
-                                important = (TextView)findViewById(R.id.important);
-                                important.setText(String.valueOf(random));
 
                                 submit = (Button) findViewById(R.id.submit);
                                 // 제출을 클릭했을 때 문제랑 결과같 같으면 true, 다르면 false 출력 (임시로 Toast 출력)
-                                // easy모드는 성공하면 +5씩 증가 실패하면 다시 0으로 초기화
                                 submit.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
                                         String resultInt = resultText.getText().toString();
                                         String importantInt = important.getText().toString();
-                                        if(Integer.parseInt(resultInt) == Integer.parseInt(importantInt)){
+                                        intent1 = new Intent(GuessNumberInGameHard.this, Success.class);
+                                        intent2 = new Intent(GuessNumberInGameHard.this, Wrong.class);
+                                        if (Integer.parseInt(resultInt) == Integer.parseInt(importantInt)) {
                                             // 제출 버튼을 눌렀을 때
                                             resultText.setTextColor(Color.parseColor("#9E195EE8"));
                                             important.setTextColor(Color.parseColor("#9E195EE8"));
-                                            Toast.makeText(getApplicationContext(), "성공입니다!", Toast.LENGTH_SHORT).show();
-                                            score += 5;
-                                            Log.i("SCORE", "게임 성공! 현재 스코어는 : " + score + "입니다.");
+                                            startActivity(intent1);
+                                            hardScore.score += 5;
+                                        } else {
+                                            hardScore.score -= 5; // 실패시 점수 3점 감점.
+                                            // score가 0보다 작으면 스코어 0점으로 유지시키기. (-로 안가게 하기)
+                                            if(hardScore.score < 0){
+                                                hardScore.score = 0;
+                                            }
+                                            Log.i("SCORE", "실패! 점수는 : " + hardScore.score);
+                                            startActivity(intent2);
+
                                         }
-                                        else{
-                                            Toast.makeText(getApplicationContext(), "실패입니다..", Toast.LENGTH_SHORT).show();
-                                            score = 0;
-                                            Log.i("SCORE", "게임 실패! 현재 스코어는 : " + score + "입니다.");
-                                        }
+                                        flag = false;
                                     }
                                 });
                                 // 다시 10초 카운트 다운을 한다.
@@ -199,23 +228,29 @@ public class InGameHard extends AppCompatActivity {
             @Override
             public void run() {
                 // 5초 카운트 다운
-                for(i = 10; i >= 0; i--){
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    value = i;
-                    InGameHard.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            timer.setText(String.valueOf(value));
-                            // 5초가 지나면 버튼 입력하는 배경 색 숫자가 안 보이도록 변경시켜주기.
-                            if(value == 0){
-                                Toast.makeText(getApplicationContext(), "시간이 초과되었습니다..", Toast.LENGTH_SHORT).show();
-                            }
+                if (flag) {
+                    for (i = 5; i >= 0; i--) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                    });
+                        value = i;
+                        GuessNumberInGameHard.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                timer.setText(String.valueOf(value));
+                                if (value == 0) {
+                                    if (flag == true) {
+                                        Intent intent = new Intent(GuessNumberInGameHard.this, Timeout.class);
+
+
+                                        startActivity(intent);
+                                    }
+                                }
+                            }
+                        });
+                    }
                 }
             }
         }).start();
